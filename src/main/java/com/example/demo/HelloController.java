@@ -1,15 +1,16 @@
 package com.example.demo;
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HelloController {
 
-	// http://localhost:8080/hello -> hello()
+	// http://localhost:8080/hello?name=Thorsten
 
-	@RequestMapping("/hello")
-	public String hello() {
-		return "Hello Governikus";
+	@GetMapping("/hello")
+	public String hello(@RequestParam(value = "name", required = false, defaultValue = "Governikus") String firstname) {
+		return "Hello " + firstname;
 	}
 }
